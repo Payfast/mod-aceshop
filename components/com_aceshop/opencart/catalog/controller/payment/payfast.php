@@ -107,7 +107,16 @@ class ControllerPaymentPayFast extends Controller {
                 $secureString .= $k.'='.urlencode(trim($v)).'&';
                 $this->data[$k] = $v;        
             }
-            $secureString = substr( $secureString, 0, -1 );
+            $passphrase = $this->config->get('payfast_passphrase');
+            if(  !empty( $passphrase ) && !$this->config->get('payfast_sandbox')  )
+            {
+                $secureString = $secureString.'passphrase='.$this->config->get('payfast_passphrase');
+            }
+            else
+            {
+                $secureString = substr( $secureString, 0, -1 );
+            }
+            
             
             $securityHash = md5($secureString);
             $this->data['signature'] = $securityHash;
