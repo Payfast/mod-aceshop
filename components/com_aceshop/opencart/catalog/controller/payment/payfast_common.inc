@@ -23,7 +23,7 @@
 
 //// Create user agent string
 // User agent constituents (for cURL)
-define( 'PF_SOFTWARE_NAME', 'Opencart' );
+define( 'PF_SOFTWARE_NAME', 'Aceshop Opencart' );
 define( 'PF_SOFTWARE_VER', "1.5.4" );
 define( 'PF_MODULE_NAME', 'PayFast-Aceshop' );
 define( 'PF_MODULE_VER', '1.2.0' );

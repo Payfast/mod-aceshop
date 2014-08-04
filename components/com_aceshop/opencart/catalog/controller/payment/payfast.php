@@ -177,9 +177,10 @@ class ControllerPaymentPayFast extends Controller {
         if( !$pfError && !$pfDone )
         {
             pflog( 'Verify security signature' );
-        
+            $passphrase = $this->config->get('payfast_passphrase');
+            $pfPassphrase = $this->config->get( 'payfast_sandbox' ) ? null : ( !empty( $passphrase ) ? $passphrase : null );
             // If signature different, log for debugging
-            if( !pfValidSignature( $pfData, $pfParamString ) )
+            if( !pfValidSignature( $pfData, $pfParamString, $pfPassphrase ) )
             {
                 $pfError = true;
                 $pfErrMsg = PF_ERR_INVALID_SIGNATURE;
