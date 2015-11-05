@@ -120,6 +120,7 @@ class ControllerPaymentPayFast extends Controller {
             
             $securityHash = md5($secureString);
             $this->data['signature'] = $securityHash;
+            $this->data['user_agent'] = 'AceShop 4.x';
         
             if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/payfast.tpl')) 
             {
